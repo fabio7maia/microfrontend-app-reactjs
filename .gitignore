@@ -27,3 +27,5 @@ test-report.xml
 
 /.webpack-federation-modules-types
 /dist
+
+.env
