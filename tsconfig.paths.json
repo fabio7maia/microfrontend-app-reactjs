@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"baseUrl": "./",
+		"paths": {
+			"@assets": ["src/assets"],
+			"@components": ["src/components"],
+			"@configs": ["src/configs"],
+			"@constants": ["src/constants"],
+			"@drawers": ["src/drawers"],
+			"@flows": ["src/flows"],
+			"@helpers": ["src/helpers"],
+			"@hooks": ["src/hooks"],
+			"@i18n": ["src/i18n"],
+			"@modals": ["src/modals"],
+			"@screens": ["src/screens"],
+			"@services": ["src/services"],
+			"@store": ["src/store"],
+			"@themes": ["src/themes"],
+			"@types": ["src/types"],
+			"@wpfm-types/*": [".webpack-federation-modules-types/*/dts/"]
+		}
+	}
+}
