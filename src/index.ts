@@ -2,4 +2,4 @@
 /* eslint-disable no-empty-function */
 import * as bootstrap from './bootstrap';
 
-bootstrap(() => {});
+(bootstrap as any)(() => {});
