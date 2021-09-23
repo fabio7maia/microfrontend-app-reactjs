@@ -7,6 +7,7 @@ import configureStore from './configureStore';
 import { MicroFrontend } from './microfrontend';
 
 const history = createBrowserHistory();
+console.log('test');
 
 export const store = configureStore(history);
 
