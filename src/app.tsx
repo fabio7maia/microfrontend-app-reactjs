@@ -1,14 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
 import { HomeScreen } from '@screens';
 import configureStore from './configureStore';
 import { MicroFrontend } from './microfrontend';
 
-const history = createBrowserHistory();
-
-export const store = configureStore(history);
+export const store = configureStore();
 
 MicroFrontend.init({ store });
 
@@ -19,6 +16,7 @@ export const App: React.FC = () => {
 				<React.Fragment>
 					<Switch>
 						<Route exact path="/" component={HomeScreen} />
+						<Route exact path="/dashboard" component={HomeScreen} />
 					</Switch>
 				</React.Fragment>
 			</BrowserRouter>

@@ -10,16 +10,16 @@ interface StoreReducer {
 	baseState: any;
 }
 
-const appReducer = (history: History): Reducer<StoreReducer> => {
+const appReducer = (): Reducer<StoreReducer> => {
 	return combineReducers({
 		baseState: baseReducer,
 	});
 };
 
-export const rootReducer = (history: History): Reducer<StoreReducer> => {
+export const rootReducer = (): Reducer<StoreReducer> => {
 	return (state: any, action: Action): any => {
 		const newState = { ...state };
 
-		return appReducer(history)(newState, action);
+		return appReducer()(newState, action);
 	};
 };

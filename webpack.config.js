@@ -12,8 +12,21 @@ const env = 'development';
 process.env.NODE_ENV = process.env.BABEL_ENV = env;
 process.env.PUBLIC_URL = '/';
 
+const transformDependencies = (deps) => {
+	const transformDependencies = {};
+
+	Object.keys(deps).forEach((key) => {
+		transformDependencies[key] = {
+			eager: true,
+			requiredVersion: deps[key],
+		};
+	});
+
+	return transformDependencies;
+};
+
 module.exports = {
-	entry: './src/index.js',
+	entry: './src/index',
 	mode: env,
 	devServer: {
 		static: {
@@ -52,23 +65,17 @@ module.exports = {
 		new ModuleFederationPlugin({
 			name: 'ibCorporate',
 			remotes: {
-				dashboardModule: 'dashboardModule@http://localhost:3002/remoteEntry.js',
-				widgetsModule: 'widgetsModule@http://localhost:3003/remoteEntry.js',
+				widgetsModule:
+					'widgetsModule@https://fabio7maia.github.io/microfrontend-widgets-module-reactjs/remoteEntry.js',
 			},
 			shared: {
-				...packageJson.dependencies,
-				react: { eager: true, requiredVersion: packageJson.dependencies.react },
-				'react-dom': { eager: true, requiredVersion: packageJson.dependencies['react-dom'] },
-				'react-redux': {
-					eager: true,
-					requiredVersion: packageJson.dependencies['react-redux'],
-				},
+				...transformDependencies(packageJson.dependencies),
 			},
 		}),
 		new Webpack5RemoteTypesPlugin({
 			remotes: {
-				dashboardModule: 'dashboardModule@http://localhost:3002/remoteEntry.js',
-				widgetsModule: 'widgetsModule@http://localhost:3003/remoteEntry.js',
+				widgetsModule:
+					'widgetsModule@https://fabio7maia.github.io/microfrontend-widgets-module-reactjs/remoteEntry.js',
 			},
 			outputDir: '.webpack-federation-modules-types',
 			remoteFileName: '[name]-dts.tgz',
