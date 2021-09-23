@@ -21,6 +21,8 @@ jobs:
               run: |
                   yarn
                   yarn run build
+              env:
+                  REACT_APP_HOST_WIDGETS_MODULE: ${{ secrets.REACT_APP_HOST_WIDGETS_MODULE }}
 
             - name: Deploy 🚀
               uses: JamesIves/github-pages-deploy-action@4.1.5
