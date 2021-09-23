@@ -22,6 +22,10 @@ jobs:
                   yarn
                   yarn run build
               env:
+                  GENERATE_SOURCEMAP: ${{ secrets.GENERATE_SOURCEMAP }}
+                  REACT_APP_LOGGER_DEBUG: ${{ secrets.REACT_APP_LOGGER_DEBUG }}
+                  REACT_APP_LOGGER_ERROR: ${{ secrets.REACT_APP_LOGGER_ERROR }}
+                  REACT_APP_LOGGER_LOG: ${{ secrets.REACT_APP_LOGGER_LOG }}
                   REACT_APP_HOST_WIDGETS_MODULE: ${{ secrets.REACT_APP_HOST_WIDGETS_MODULE }}
                   PUBLIC_URL: ${{ secrets.PUBLIC_URL }}
 
