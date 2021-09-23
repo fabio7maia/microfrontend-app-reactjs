@@ -11,7 +11,7 @@ const dotEnv = require('dotenv');
 
 const env = process.env.NODE_ENV || 'development';
 const envVars = dotEnv.config().parsed;
-const hostWidgetsModule = envVars.REACT_APP_HOST_WIDGETS_MODULE || '';
+const hostWidgetsModule = envVars.REACT_APP_HOST_WIDGETS_MODULE || process.env.REACT_APP_HOST_WIDGETS_MODULE || '';
 
 const transformDependencies = (deps) => {
 	const transformDependencies = {};
