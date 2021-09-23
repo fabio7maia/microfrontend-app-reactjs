@@ -13,6 +13,7 @@ const env = process.env.NODE_ENV || 'development';
 const envVars = dotEnv.config().parsed;
 const hostWidgetsModule =
 	(envVars ? envVars.REACT_APP_HOST_WIDGETS_MODULE : process.env.REACT_APP_HOST_WIDGETS_MODULE) || '';
+const publicUrl = process.env.PUBLIC_URL || '/public';
 
 const transformDependencies = (deps) => {
 	const transformDependencies = {};
@@ -83,7 +84,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: './public/index.html',
 			templateParameters: {
-				PUBLIC_URL: '/public',
+				PUBLIC_URL: publicUrl,
 			},
 		}),
 		new Dotenv(),
