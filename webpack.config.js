@@ -7,10 +7,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Webpack5RemoteTypesPlugin = require('webpack5-remote-types-plugin').default;
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const packageJson = require('./package.json');
+const dotEnv = require('dotenv');
 
-const env = 'development';
-process.env.NODE_ENV = process.env.BABEL_ENV = env;
-process.env.PUBLIC_URL = '/';
+const env = process.env.NODE_ENV || 'development';
+const envVars = dotEnv.config().parsed;
+const hostWidgetsModule = envVars.REACT_APP_HOST_WIDGETS_MODULE || '';
 
 const transformDependencies = (deps) => {
 	const transformDependencies = {};
@@ -65,8 +66,7 @@ module.exports = {
 		new ModuleFederationPlugin({
 			name: 'ibCorporate',
 			remotes: {
-				widgetsModule:
-					'widgetsModule@https://fabio7maia.github.io/microfrontend-widgets-module-reactjs/remoteEntry.js',
+				widgetsModule: `widgetsModule@${hostWidgetsModule}`,
 			},
 			shared: {
 				...transformDependencies(packageJson.dependencies),
@@ -74,8 +74,7 @@ module.exports = {
 		}),
 		new Webpack5RemoteTypesPlugin({
 			remotes: {
-				widgetsModule:
-					'widgetsModule@https://fabio7maia.github.io/microfrontend-widgets-module-reactjs/remoteEntry.js',
+				widgetsModule: `widgetsModule@${hostWidgetsModule}`,
 			},
 			outputDir: '.webpack-federation-modules-types',
 			remoteFileName: '[name]-dts.tgz',
