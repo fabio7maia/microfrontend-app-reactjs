@@ -10,7 +10,7 @@ const webpack = require('webpack');
 const dotEnv = require('dotenv');
 
 const env = process.env.NODE_ENV || 'development';
-const envVars = dotEnv.config().parsed;
+const envVars = dotEnv.config().parsed || process.env;
 const hostWidgetsModule =
 	(envVars ? envVars.REACT_APP_HOST_WIDGETS_MODULE : process.env.REACT_APP_HOST_WIDGETS_MODULE) || '';
 const publicUrl = (envVars ? envVars.PUBLIC_URL : process.env.PUBLIC_URL) || '/public';
