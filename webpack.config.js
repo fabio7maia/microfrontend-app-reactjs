@@ -76,7 +76,7 @@ module.exports = {
 	},
 	plugins: [
 		new ModuleFederationPlugin({
-			name: 'ibCorporate',
+			name: 'appReactJs',
 			remotes: {
 				widgetsModule: `widgetsModule@${hostWidgetsModule}`,
 			},
